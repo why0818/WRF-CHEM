@@ -39,7 +39,7 @@ cpp --version
 # Create directory
 mkdir -p /home/ubuntu/Build_WRF/src
 mkdir -p /home/ubuntu/Build_WRF/LIBRARIES
-cd /home/ubuntu/Build_WRF/sr
+cd /home/ubuntu/Build_WRF/src
 ```
 Download Source Code. (provided) 
 ```bash
@@ -52,8 +52,7 @@ cd mpich-4.0.2
 FFLAGS=-fallow-argument-mismatch FCFLAGS=-fallow-argument-mismatch ./configure --prefix=/home/ubuntu/Build_WRF/LIBRARIES/mpich
 make -j4
 make install
-```
-
+```更新PATH变量
 ```bash
 vim /home/ubuntu/.profile
 ```
