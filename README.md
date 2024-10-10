@@ -32,7 +32,7 @@ gfortran -v
 cpp --version
 ```
 
-## 2. Libraries for WRF-chem 安装库文件
+## 2. Libraries Installation 安装库文件
 
 ### 2.1 Install mpich
 ```bash
