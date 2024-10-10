@@ -41,18 +41,19 @@ mkdir -p /home/ubuntu/Build_WRF/src
 mkdir -p /home/ubuntu/Build_WRF/LIBRARIES
 cd /home/ubuntu/Build_WRF/src
 ```
-Download Source Code. (provided) 
+Download Source Code. (provided)  下载源码（已提供）
 ```bash
 wget https://www.mpich.org/static/downloads/4.0.2/mpich-4.0.2.tar.gz
 ```
-Uncompress Source Code and Compile.
+Uncompress Source Code and Compile. 解压源码并编译
 ```bash
 tar -xzvf mpich-4.0.2.tar.gz
 cd mpich-4.0.2
 FFLAGS=-fallow-argument-mismatch FCFLAGS=-fallow-argument-mismatch ./configure --prefix=/home/ubuntu/Build_WRF/LIBRARIES/mpich
 make -j4
 make install
-```更新PATH变量
+```
+Update PATH variables 更新PATH变量
 ```bash
 vim /home/ubuntu/.profile
 ```
