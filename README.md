@@ -125,6 +125,31 @@ make install
 ```
 
 ### 2.5 Install netcdf
+```bash
+cd /home/ubuntu/Build_WRF/src
+```
+Download Source Code.
+```bash
+wget ftp://ftp.unidata.ucar.edu/pub/netcdf/netcdf-c-4.8.0.tar.gz
+wget ftp://ftp.unidata.ucar.edu/pub/netcdf/netcdf-fortran-4.5.3.tar.gz
+```
+Uncompress Source Code and Compile. 解压源码并编译
+```bash
+tar xzvf netcdf-c-4.8.0.tar.gz
+cd netcdf-c-4.8.0
+CFLAGS=-fPIC CPPFLAGS='-I/home/ubuntu/Build_WRF/LIBRARIES/hdf5/include -I/home/ubuntu/Build_WRF/LIBRARIES/curl/include' LDFLAGS='-L/home/ubuntu/Build_WRF/LIBRARIES/hdf5/lib -L/home/ubuntu/Build_WRF/LIBRARIES/curl/lib ' ./configure --prefix=/home/ubuntu/Build_WRF/LIBRARIES/netcdf --enable-netcdf-4 --enable-netcdf4 --enable-shared --enable-dap
+make -j4
+make install
+cd ..
+```
+Uncompress Source Code and Compile. 解压源码并编译
+```bash
+tar xzvf netcdf-fortran-4.5.3.tar.gz
+cd netcdf-fortran-4.5.3
+CPPFLAGS='-I/home/ubuntu/Build_WRF/LIBRARIES/netcdf/include' LDFLAGS='-L/home/ubuntu/Build_WRF/LIBRARIES/netcdf/lib' FCFLAGS='-m64' ./configure --prefix=/home/ubuntu/Build_WRF/LIBRARIES/netcdf
+make -j4
+make install
+```
 
 ## 3. Install WRF
 
