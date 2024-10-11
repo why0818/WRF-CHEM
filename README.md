@@ -126,3 +126,12 @@ make install
 
 ### 2.5 Install netcdf
 
+## 3. Install WRF
+
+![Compile WRF](figure/fig01.jpg)
+
+![Compile WRF](figure/fig02.jpg)
+
+![Compile WRF](figure/fig03.jpg)
+
+![Compile WRF](figure/fig04.jpg)
