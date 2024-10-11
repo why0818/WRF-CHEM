@@ -224,7 +224,7 @@ source activate ncl_stable
 source /home/ubuntu/.profile
 ```
 ## 3. Install WRF
-### WRF-chem and KPP
+### 3.1 WRF-chem and KPP
 Variable setup. 设置变量
 ```bash
 ulimit -s unlimited
@@ -260,9 +260,18 @@ cd /home/ubuntu/Build_WRF/WRFV4.4
 ```bash
 vim configure
 ```
+
+<style>
+  table {
+    margin-left: auto;
+    margin-right: auto;
+  }
+</style>
+
 | Change from | To |
-|:------:|:-------:|
+|:---------:|:----------:|
 | if [ "$USENETCDFPAR" == "1" ] ; then | if [ "$USENETCDFPAR" **=** "1" ] ; then|
+
 ```bash
 ./configure
 ```
@@ -287,6 +296,7 @@ ls -lah main/*.exe
 ![WRF finish](figure/fig02.jpg)
 如图中所示，出现这些.exe文件即表示WRF安装成功！  
 If you see real.exe and wrf.exe then correct. Else check Error in compile_wrf.log file.
+### 3.2 WPS installation
 ![Compile WRF](figure/fig03.jpg)
 
 ![Compile WRF](figure/fig04.jpg)
