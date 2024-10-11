@@ -150,6 +150,20 @@ CPPFLAGS='-I/home/ubuntu/Build_WRF/LIBRARIES/netcdf/include' LDFLAGS='-L/home/ub
 make -j4
 make install
 ```
+Update PATH variables 更新PATH变量
+```bash
+vim /home/ubuntu/.profile
+```
+```text
+### netcdf
+export PATH=/home/ubuntu/Build_WRF/LIBRARIES/netcdf/bin:$PATH
+export NETCDF=/home/ubuntu/Build_WRF/LIBRARIES/netcdf
+export LD_LIBRARY_PATH=/home/ubuntu/Build_WRF/LIBRARIES/netcdf/lib:$LD_LIBRARY_PATH
+```
+```bash
+source /home/ubuntu/.profile
+```
+
 
 ## 3. Install WRF
 
