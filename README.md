@@ -261,14 +261,7 @@ cd /home/ubuntu/Build_WRF/WRFV4.4
 vim configure
 ```
 
-<style>
-  table {
-    margin-left: auto;
-    margin-right: auto;
-  }
-</style>
-
-| Change from | To |
+| Change from |    To    |
 |:---------:|:----------:|
 | if [ "$USENETCDFPAR" == "1" ] ; then | if [ "$USENETCDFPAR" **=** "1" ] ; then|
 
@@ -297,6 +290,81 @@ ls -lah main/*.exe
 如图中所示，出现这些.exe文件即表示WRF安装成功！  
 If you see real.exe and wrf.exe then correct. Else check Error in compile_wrf.log file.
 ### 3.2 WPS installation
+```bash
+cd /home/ubuntu/Build_WRF/
+ln -sf WRFV4.4 WRF
+```
+Download Source Code
+```bash
+wget -c https://github.com/wrf-model/WPS/archive/refs/tags/v4.4.tar.gz -O wps-4.4.tar.gz
+```
+Uncompress Source Code.
+```bash
+tar -xvzf wps-4.4.tar.gz
+```
+Define variable.
+```bash
+cd WPS-4.4
+export JASPERLIB=/home/ubuntu/Build_WRF/LIBRARIES/jasper/lib
+export JASPERINC=/home/ubuntu/Build_WRF/LIBRARIES/jasper/include
+```
+Configure WPS.
+```bash
+./configure
+```
+edit configure.wps file. Change DM_FC to mpif90 and Append -lgomp in WRF_LIB.
+```bash
+vim configure.wps
+```
+```text
+COMPRESSION_LIBS = -L/home/ubuntu/Build_WRF/LIBRARIES/jasper/lib -ljasper -lpng -lz
+COMPRESSION_INC = -I/home/ubuntu/Build_WRF/LIBRARIES/jasper/include
+
+WRF_LIB = -L$(WRF_DIR)/external/io_grib1 -lio_grib1 \
+          -L$(WRF_DIR)/external/io_grib_share -lio_grib_share \
+          -L$(WRF_DIR)/external/io_int -lwrfio_int \
+          -L$(WRF_DIR)/external/io_netcdf -lwrfio_nf \
+          -L$(NETCDF)/lib -lnetcdff -lnetcdf -lgomp
+```
+Complie WPS.
+```bash
+./compile 2>&1 | tee compile_wps.log
+```
+Wait for finish test by
+```bash
+ls -lah *.exe
+```
 ![Compile WRF](figure/fig03.jpg)
+如图，出现以上.exe文件表示WPS安装成功！
+
+## 4. Create Directory for Geography Data.
+```bash
+cd /home/ubuntu/Build_WRF/
+```
+Download Geography Data.
+```bash
+wget http://www2.mmm.ucar.edu/wrf/src/wps_files/albedo_modis.tar.bz2
+wget http://www2.mmm.ucar.edu/wrf/src/wps_files/geog_complete.tar.gz
+wget http://www2.mmm.ucar.edu/wrf/src/wps_files/maxsnowalb_modis.tar.bz2
+wget http://www2.mmm.ucar.edu/wrf/src/wps_files/topo_2m.tar.bz2
+```
+Uncompress Geography Data.
+```bash
+tar -xvzf geog_complete.tar.gz
+cd geog
+tar -xvjf ../albedo_modis.tar.bz2
+tar -xvjf ../maxsnowalb_modis.tar.bz2
+tar -xvjf ../topo_2m.tar.bz2
+```
+## Create directory for Input Data.
+Create Real-time Data Directory and Change to Directory.
+```bash
+mkdir -p /home/ubuntu/Build_WRF/data/fnl
+cd /home/ubuntu/Build_WRF/data/fnl
+```
+Download Data from
+https://rda.ucar.edu/datasets/ds083.2/index.html#sfol-wl-/data/ds083.2?g=22010
+
 
 ![Compile WRF](figure/fig04.jpg)
+
